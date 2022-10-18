@@ -1,0 +1,5 @@
+server:
+  port: 9097
+zookeeper:
+  connect-string: cramin.com:2181
+  session-timeout: 300000
