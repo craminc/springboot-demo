@@ -1,4 +1,4 @@
-package com.cramin.springbootdemo.until.lock;
+package com.cramin.springbootdemo.util.lock;
 
 import java.util.concurrent.TimeUnit;
 

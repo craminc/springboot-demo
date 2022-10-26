@@ -1,5 +1,30 @@
 server:
   port: 9097
 zookeeper:
+  enable: false
   connect-string: cramin.com:2181
   session-timeout: 300000
+sentry:
+  dsn: http://da8b6b984b26491dafe9cfd2ff26fbde@10.10.181.147:9000/8
+  # Set traces-sample-rate to 1.0 to capture 100% of transactions for performance monitoring.
+  # We recommend adjusting this value in production.
+  traces-sample-rate: 1.0
+
+spring:
+  datasource:
+    mysql:
+      url: jdbc:mysql://139.224.68.48:3307/draft
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    postgres:
+      url: jdbc:postgresql://139.224.68.48:5432/postgres?currentSchema=spring
+      username: postgres
+      password: cramin123
+      driver-class-name: org.postgresql.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+logging:
+  level:
+    com.cramin.springbootdemo.mysql.mapper: DEBUG
+    com.cramin.springbootdemo.postgres.mapper: DEBUG

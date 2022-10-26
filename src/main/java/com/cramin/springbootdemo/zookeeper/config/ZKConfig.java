@@ -1,14 +1,12 @@
 package com.cramin.springbootdemo.zookeeper.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 @Configuration
@@ -21,10 +19,14 @@ public class ZKConfig {
     @Value("${zookeeper.session-timeout}")
     private Integer sessionTimeout;
 
+    @Value("${zookeeper.enable}")
+    private boolean enable;
+
     private final CountDownLatch lock = new CountDownLatch(1);
 
     @Bean
     public ZooKeeper zooKeeper() {
+        if (!enable) return null;
         ZooKeeper zk;
         try {
             zk = new ZooKeeper(connectString, sessionTimeout, event -> {
