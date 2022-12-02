@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,5 +27,22 @@ public class DatabaseTests {
 
         System.out.println(users1);
         System.out.println(users2);
+    }
+
+    @Test
+    void interceptorTest() {
+        int user = userMapper1.insertSelective(
+                UserEntity.builder()
+                        .name("test")
+                        .age(21)
+                        .build()
+        );
+        System.out.println(user);
+    }
+
+    @Test
+    void queryTest() {
+        UserEntity user = userMapper1.selectByPrimaryKey(1);
+        System.out.println(user);
     }
 }

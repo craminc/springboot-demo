@@ -12,7 +12,7 @@ public class SentryErrorTest {
         try {
             throw new Exception("This is a test.");
         } catch (Exception e) {
-            Sentry.captureException(e);
+            Sentry.captureException(new RuntimeException("This is a new test."));
         }
     }
 }
